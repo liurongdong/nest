@@ -20,6 +20,11 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
   // 全局注册错误的过滤器
   app.useGlobalFilters(new HttpExceptionFilter());
+  // 处理跨域
+  app.enableCors({
+    credentials: true
+  });
+
   await app.listen(3000);
 }
 bootstrap();

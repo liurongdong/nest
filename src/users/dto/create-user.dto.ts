@@ -1,12 +1,21 @@
-import { IsEmail, IsNotEmpty, IsMobilePhone } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsMobilePhone, isNotEmpty, MinLength } from 'class-validator';
+import { ErrorCode } from '../../constants/errcode';
 export class CreateUserDto {
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'openid不能为空'
+  })
   openid: string;
   @IsMobilePhone('zh-CN', {
-    message: '无效的手机号',
+    strictMode: false
+  }, {
+    message: '无效手机号',
     context: {
-      errorCode: ErrorCode.InvalidPhone.CODE,
-    },
+      errorCode: ErrorCode.InvalidPhone.CODE
+    }
   })
+  @MinLength(1, {
+    message: 'geetest_challenge不能为空',
+  })
+
   readonly tel: string;
 }

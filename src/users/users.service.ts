@@ -6,6 +6,7 @@ export class UsersService {
 
   create(user: User) {
     this.users.push(user);
+    return this.users
   }
 
   findAll(): User[] {
