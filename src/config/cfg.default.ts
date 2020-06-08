@@ -18,7 +18,8 @@ export default {
     password: 'lrd6274...',
     database: 'liuuu',
     synchronize: false,
-    entities: [path.join(__dirname, '../entity/**/*.entity{.ts,.js}')],
+    autoSchemaSync: true,
+    entities: [path.join(__dirname, '../entity/**/*{.ts,.js}')],
     logging: 'all', // query, error, schema, warn, info, log, all
     logger: 'simple-console',
     maxQueryExecutionTime: 500, // 单位毫秒
@@ -96,7 +97,8 @@ export default {
   github: {
     clientID: '',
     clientSecret: '',
-    authorizeURL: 'https://github.com/login/oauth/authorize?scope=user&client_id=%s',
+    authorizeURL:
+      'https://github.com/login/oauth/authorize?scope=user&client_id=%s',
     accessTokenURL: 'https://github.com/login/oauth/access_token',
     userInfoURL: 'https://api.github.com/user?access_token=%s',
   },
@@ -107,9 +109,12 @@ export default {
     serverURL: url,
     redirectURL: '',
     // tslint:disable-next-line:max-line-length
-    authorizeURL: 'https://api.weibo.com/oauth2/authorize?state=%s&scope=email&client_id=%s&response_type=code&redirect_uri=%s',
+    authorizeURL:
+      'https://api.weibo.com/oauth2/authorize?state=%s&scope=email&client_id=%s&response_type=code&redirect_uri=%s',
     // tslint:disable-next-line:max-line-length
-    accessTokenURL: 'https://api.weibo.com/oauth2/access_token?client_id=%s&client_secret=%s&grant_type=authorization_code&redirect_uri=%s&code=%s',
-    userInfoURL: 'https://api.weibo.com/2/users/show.json?access_token=%s&uid=%s',
+    accessTokenURL:
+      'https://api.weibo.com/oauth2/access_token?client_id=%s&client_secret=%s&grant_type=authorization_code&redirect_uri=%s&code=%s',
+    userInfoURL:
+      'https://api.weibo.com/2/users/show.json?access_token=%s&uid=%s',
   },
 };
