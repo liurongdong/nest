@@ -17,9 +17,7 @@ export class UsersController {
   @Post()
   findOrCreate(@Body() createUserDto: CreateUserDto) {
     Logger.log(createUserDto);
-    this.usersService.create(createUserDto);
-    return {
-      nihao: '89890908',
-    };
+
+    return this.usersService.findAll()
   }
 }

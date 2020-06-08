@@ -2,23 +2,25 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
+import { ConfigService } from './config/config.service';
+import { UsersModule } from './users/users.module';
+import { ConfigModule } from './config/config.module';
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '47.97.201.129',
-      port: 3306,
-      username: 'liuuu',
-      password: 'lrd6274...',
-      database: 'liuuu',
-      entities: [],
-      synchronize: true,
-      autoLoadEntities: true,
-    }),
-  ],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+    ConfigModule,
+    TypeOrmModule.forRootAsync(
+      {
+        useFactory: async (configService: ConfigService) => {
+          // typeorm bug, https://github.com/nestjs/nest/issues/1119
+          // 将 type 定义为 type: 'mysql' | 'mariadb'; 解决此issue
+          return configService.db;
+        },
+        inject: [ConfigService],
+      }
+
+    ),
+    UsersModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
