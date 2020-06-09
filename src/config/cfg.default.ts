@@ -19,7 +19,7 @@ export default {
     database: 'liuuu',
     synchronize: false,
     autoSchemaSync: true,
-    entities: [path.join(__dirname, '../entity/**/*{.ts,.js}')],
+    entities: [path.join(__dirname, '../entities/*{.ts,.js}')],
     logging: 'all', // query, error, schema, warn, info, log, all
     logger: 'simple-console',
     maxQueryExecutionTime: 500, // 单位毫秒
